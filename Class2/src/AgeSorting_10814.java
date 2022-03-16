@@ -14,22 +14,25 @@ class Person implements Comparable<Person> {
 
     @Override
     public int compareTo(Person o) {
-        if (this.age == o.age) return this.name.charAt(0) - o.name.charAt(0);
-        else return this.age - this.age;
+       return this.age - o.age;
     }
 }
-
 
 public class AgeSorting_10814 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[] ints = new int[n];
-        String[] strings = new String[n];
+
+        ArrayList<Person> arrayList = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            ints[i] = sc.nextInt();
-            strings[i] = sc.next();
+            int age = sc.nextInt();
+            String name = sc.next();
+            arrayList.add(new Person(age, name));
         }
 
+        Collections.sort(arrayList);
+        for (int i = 0; i < n; i++) {
+            System.out.println(arrayList.get(i).age + " " + arrayList.get(i).name);
+        }
     }
 }
