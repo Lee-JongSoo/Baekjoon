@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class LANCut_1654 {
+public class LANCut_1654_X {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
