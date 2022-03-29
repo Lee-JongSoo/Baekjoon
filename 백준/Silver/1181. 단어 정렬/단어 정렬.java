@@ -1,7 +1,7 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 class StringLength implements Comparable<StringLength> {
     public String str;
@@ -26,26 +26,28 @@ class StringLength implements Comparable<StringLength> {
 }
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
 
         ArrayList<StringLength> stringLengths = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            String s = sc.next();
+            String s = br.readLine();
             stringLengths.add(new StringLength(s, s.length()));
         }
 
         Collections.sort(stringLengths);
 
-        System.out.println(stringLengths.get(0).str);
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(stringLengths.get(0).str).append('\n');
 
         for (int i = 1; i < n; i++) {
             if (!stringLengths.get(i).str.equals(stringLengths.get(i - 1).str)) {
-                System.out.println(stringLengths.get(i).str);
+                sb.append(stringLengths.get(i).str).append('\n');
             }
         }
-
+        System.out.println(sb);
     }
-
 }
