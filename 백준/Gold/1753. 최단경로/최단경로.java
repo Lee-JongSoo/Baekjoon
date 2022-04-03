@@ -1,7 +1,7 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 class EdgeSP implements Comparable<EdgeSP> {
 
@@ -44,16 +44,17 @@ public class Main {
                 }
             }
         }
-
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Main shortestPath = new Main();
-        Scanner sc = new Scanner(System.in);
 
-        n = sc.nextInt();
-        m = sc.nextInt();
-        k = sc.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+        k = Integer.parseInt(br.readLine());
         graph = new ArrayList<ArrayList<EdgeSP>>();
 
         for (int i = 0; i <= n; i++) {
@@ -64,17 +65,22 @@ public class Main {
         Arrays.fill(dis, Integer.MAX_VALUE);
 
         for (int i = 0; i < m; i++) {
-            int a = sc.nextInt();
-            int b = sc.nextInt();
-            int c = sc.nextInt();
+            st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            int c = Integer.parseInt(st.nextToken());
             graph.get(a).add(new EdgeSP(b, c));
         }
 
         shortestPath.solution(k);
 
+        StringBuilder sb = new StringBuilder();
+
         for (int i = 1; i <= n; i++) {
-            if (dis[i] != Integer.MAX_VALUE) System.out.println(dis[i]);
-            else System.out.println("INF");
+            if (dis[i] != Integer.MAX_VALUE) sb.append(dis[i]).append("\n");
+            else sb.append("INF").append("\n");
         }
+
+        System.out.println(sb);
     }
 }
